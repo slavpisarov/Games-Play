@@ -29,7 +29,7 @@ export default function GameDetails() {
             formData.get('username'),
             formData.get('comment')
         );
-
+            setComments(state => [...state, newComment])
     }
 
     return (
@@ -52,7 +52,7 @@ export default function GameDetails() {
                     <h2>Comments:</h2>
                     <ul>
                         {comments.map(comment => (
-                            <li className="comment">
+                            <li className="comment" key={comment._id}>
                                 <p>{comment.username}: {comment.text}</p>
                             </li>
                         ))}
