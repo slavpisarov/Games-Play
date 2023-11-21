@@ -3,9 +3,16 @@
 import useForm from "../../hooks/useForm"
 
 
-export default function Login() {
+export default function Login({
+    loginSubmitHandler
+}) {
 
-    const {values, onChange, onSubmit} = useForm()
+
+
+    const {values, onChange, onSubmit} = useForm(loginSubmitHandler,{
+        email:'',
+        password:'',
+    })
     return (
         <section id="login-page" className="auth">
             <form id="login" onSubmit={onSubmit}>
