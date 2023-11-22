@@ -18,7 +18,13 @@ const request = async (method,url,data) =>{
         method,
     })
 
+    if(res.status === 204){
+        return {};
+    }
+
     const result = await res.json();
+
+    if(!res.ok) throw result;
 
     return result;
 }

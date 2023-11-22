@@ -11,6 +11,7 @@ import GameCreate from './components/GameCreate/GameCreate'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 import GameDetails from './components/GameDetails/GameDetails'
+import Logout from './components/Logout/Logout'
 
 
 function App() {
@@ -20,7 +21,11 @@ function App() {
   const loginSubmitHandler = async (values) => {
     const result = await authService.login(values.email, values.password)
     setAuth(result);
-    navigate('/')
+    navigate('/');
+  }
+
+  const logoutHandler = () =>{
+    setAuth({});
   }
 
   const registerSubmitHandler = async (values) => {
@@ -31,6 +36,7 @@ function App() {
   }
 
   const values = {
+    logoutHandler,
     registerSubmitHandler,
     loginSubmitHandler,
     email: auth.email,
@@ -49,6 +55,7 @@ function App() {
           <Route path='/create' element={<GameCreate />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/logout' element={<Logout />} />
         </Routes>
       </div>
     </AuthContext.Provider>
