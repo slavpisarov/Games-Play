@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
 import * as authService from './services/authService'
-import AuthContext from './contexts/AuthContext'
+import AuthContext, {AuthProvider}from './contexts/AuthContext'
 
 import Header from "./components/Header/Header"
 import Home from "./components/Home/Home"
@@ -13,7 +13,7 @@ import Register from './components/Register/Register'
 import GameDetails from './components/GameDetails/GameDetails'
 import Logout from './components/Logout/Logout'
 
-
+ 
 function App() {
   const navigate = useNavigate()
   const [auth, setAuth] = useState(()=>{
@@ -53,7 +53,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={values}>
+    <AuthProvider value={values}>
       <div id="box">
         <Header />
 
@@ -67,7 +67,7 @@ function App() {
           <Route path='/logout' element={<Logout />} />
         </Routes>
       </div>
-    </AuthContext.Provider>
+    </AuthProvider>
   )
 }
 
