@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useContext, useEffect, useMemo, useState } from 'react';
+import { Link, useParams } from 'react-router-dom'
 
 import * as gameService from '../../services/gameService'
 import * as commentService from '../../services/commentService'
@@ -30,7 +30,11 @@ export default function GameDetails() {
         setComments(state => [...state, { ...newComment, owner: { email } }])
         // setComments(state => [...state, newComment])
     }
-    const { values, onChange, onSubmit } = useForm(addCommentHandler, { comment: '' })
+
+    const initialValues = useMemo(() => ({
+         comment: '' 
+        }),[])
+    const { values, onChange, onSubmit } = useForm(addCommentHandler,initialValues)
 
     return (
         <section id="game-details">
@@ -65,8 +69,8 @@ export default function GameDetails() {
 
                 {userId===game._ownerId && (
                     <div className="buttons">
-                        <a href="#" className="button">Edit</a>
-                        <a href="#" className="button">Delete</a>
+                        <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
+                        <Link href="#" className="button">Delete</Link>
                     </div>)}
 
             </div>
