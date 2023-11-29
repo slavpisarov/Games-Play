@@ -3,8 +3,6 @@ import { useState,useEffect } from "react"
 export default function useForm(submitHandler,initialValues) {
     const [values,setValues] = useState(initialValues)
 
-
-    //temporary - Works for edit 
     // useEffect(() => {
     //     setValues(initialValues);
     // }, [initialValues])

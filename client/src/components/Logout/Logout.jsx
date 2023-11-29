@@ -13,5 +13,9 @@ export default function Logout() {
             logoutHandler()
             navigate('/')
         })
+        .catch(()=>{
+            logoutHandler()
+            navigate('/login')
+        })
     },[])
 }
