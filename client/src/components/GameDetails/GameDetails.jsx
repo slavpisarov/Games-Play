@@ -8,7 +8,7 @@ import useForm from '../../hooks/useForm'
 
 export default function GameDetails() {
     const navigate = useNavigate()
-    const { email,userId } = useContext(AuthContext)
+    const { email, userId } = useContext(AuthContext)
     const [game, setGame] = useState([])
     const [comments, setComments] = useState([])
     const { gameId } = useParams();
@@ -29,12 +29,12 @@ export default function GameDetails() {
             values.comment
         );
         setComments(state => [...state, { ...newComment, owner: { email } }])
-        // setComments(state => [...state, newComment])
+
     }
 
-    const deleteButtonClickHandler = async () =>{
-        const hasConfirmed = confirm(`Are you sure yu want to delete ${game.title}`);
-        if(hasConfirmed){
+    const deleteButtonClickHandler = async () => {
+        const hasConfirmed = confirm(`Are you sure you want to delete ${game.title}`);
+        if (hasConfirmed) {
             await gameService.remove(gameId)
 
             navigate('/games')
@@ -42,9 +42,9 @@ export default function GameDetails() {
     }
 
     const initialValues = useMemo(() => ({
-         comment: '' 
-        }),[])
-    const { values, onChange, onSubmit } = useForm(addCommentHandler,initialValues)
+        comment: ''
+    }), [])
+    const { values, onChange, onSubmit } = useForm(addCommentHandler, initialValues)
 
     return (
         <section id="game-details">
@@ -77,7 +77,7 @@ export default function GameDetails() {
 
                 </div>
 
-                {userId===game._ownerId && (
+                {userId === game._ownerId && (
                     <div className="buttons">
                         <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
                         <button className="button" onClick={deleteButtonClickHandler}>Delete</button>
